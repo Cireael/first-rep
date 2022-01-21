@@ -1,0 +1,36 @@
+from random import *
+print("Добро пожаловать в игру Числовая угадайка!\nВведите число от 1 до 100: ")
+
+
+def is_valid(number):
+    if number.isdigit() and 1 <= int(number) <= 100:
+        return True
+    else:
+        return False
+
+
+def game_start():
+    num = randrange(1, 100)
+    count = 0
+    while True:
+        number = input()
+        count += 1
+        if is_valid(number):
+            if int(number) > num:
+                print("Введите число поменьше: ")
+            elif int(number) < num:
+                print("Введите число побольше: ")
+            if int(number) == num:
+                print("Вы выиграли!", "Число попыток:", count)
+                break
+        else:
+            print("Введите целое число от 1 до 100: ")
+    game = input("Хотите сыграть снова? (Да/Нет): ")
+    if game == "Да":
+        print("Введите число от 1 до 100: ")
+        return game_start()
+    else:
+        print("\nСпасибо за игру!")
+
+
+game_start()
